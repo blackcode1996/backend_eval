@@ -7,7 +7,7 @@ const authenticate=(req,res,next)=>{
     if(token){
         jwt.verify(token,process.env.secret_key,(err,decoded)=>{
             if(decoded){
-                req.body.user=decoded.userId
+                req.body.user=decoded.userID
                 next();
             }else{
                 res.send({"msg":"Please Login"})
