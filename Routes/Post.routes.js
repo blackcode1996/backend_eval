@@ -27,6 +27,27 @@ PostRouter.post("/create",async(req,res)=>{
    
 })
 
+PostRouter.patch("/update/:id",async(req,res)=>{
+    const ID=req.params.id
+    const payload=req.body;
+    try {
+        await PostModel.findByIdAndUpdate({_id:ID},payload)
+        res.send("Your data has been updated")
+    } catch (error) {
+        res.send({"msg":error.message})
+    }
+})
+
+PostRouter.delete("/delete/:id",async(req,res)=>{
+   const ID=req.params.id
+    try{
+        await PostModel.findByIdAndDelete({_id:ID})
+        res.send("Congratulation your data has been deleted")
+    }catch(error){
+        res.send({"msg":error.message})
+    }
+})
+
 module.exports={
     PostRouter
 }
