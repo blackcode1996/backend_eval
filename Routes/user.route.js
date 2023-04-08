@@ -9,6 +9,8 @@ const { authenticate } = require("../Middleware/authenticate.middleware");
 
 const userRouter = express.Router();
 
+//hi
+
 userRouter.post("/openAccount", async (req, res) => {
   const {
     name,
