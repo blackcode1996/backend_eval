@@ -2,37 +2,32 @@ const express=require("express")
 
 const connection=require("./db")
 
-const {userRouter}=require("./Routes/User.routes")
-
-const {authenticate}=require("./Middlewares/authenticate.middleware")
-
-const {PostRouter}=require("./Routes/Post.routes")
-
-require("dotenv").config()
+const {userRouter}=require("./Routes/user.route")
 
 const cors=require("cors")
 
+
 const app=express()
+
 
 app.use(express.json())
 app.use(cors())
 
+app.use("/user",userRouter)
+
+
+
 app.get("/",(req,res)=>{
-    let initialData=`Welcome to the Linkedin App 🥳.`
+    let initialData=`Welcome to backend 🥳.`
     res.send(initialData)
 })
 
-app.use("/users",userRouter)
-
-app.use("/posts",authenticate,PostRouter)
-
-app.listen(process.env.Port,async()=>{
+app.listen(process.env.port,async()=>{
     try {
         await connection
-        console.log("Connected to database")
+        console.log("connected to database")
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
-    console.log(`server is running at port ${process.env.Port}`)
+    console.log(`Server is runing at port ${process.env.port}`)
 })
-
