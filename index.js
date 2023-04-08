@@ -2,7 +2,7 @@ const express=require("express")
 
 const connection=require("./db")
 
-const {userRouter}=require("./Routes/user.route")
+const {userRouter}=require("./Routes/user.route.js")
 
 const cors=require("cors")
 
